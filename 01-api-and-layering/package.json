@@ -1,5 +1,5 @@
 {
-  "name": "00-static",
+  "name": "01-api-and-layering",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

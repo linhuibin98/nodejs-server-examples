@@ -1,8 +1,8 @@
 {
-  "name": "02-validate",
+  "name": "04-exception",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "node express demo",
+  "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "build:yup": "rollup node_modules/yup -o src/moulds/yup.js -p @rollup/plugin-node-resolve,@rollup/plugin-commonjs,rollup-plugin-terser -f umd -n yup"
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "yup": "^1.0.2"
   },
