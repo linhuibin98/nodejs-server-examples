@@ -1,0 +1,30 @@
+{
+  "name": "06-session",
+  "version": "1.0.0",
+  "description": "node express demo",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "build:yup": "rollup node_modules/yup -o src/moulds/yup.js -p @rollup/plugin-node-resolve,@rollup/plugin-commonjs,rollup-plugin-terser -f umd -n yup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect-session-sequelize": "^7.1.5",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "sequelize": "^6.29.0",
+    "sqlite3": "^5.1.4",
+    "yup": "^1.0.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "rollup": "^3.18.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sequelize-cli": "^6.6.0"
+  }
+}
