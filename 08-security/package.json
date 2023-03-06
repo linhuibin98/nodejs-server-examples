@@ -1,9 +1,10 @@
 {
-  "name": "07-authentication",
+  "name": "08-security",
   "version": "1.0.0",
   "description": "node express demo",
   "main": "src/server.js",
   "scripts": {
+    "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "build:yup": "rollup node_modules/yup -o src/moulds/yup.js -p @rollup/plugin-node-resolve,@rollup/plugin-commonjs,rollup-plugin-terser -f umd -n yup"
   },
@@ -14,8 +15,11 @@
     "body-parser": "^1.20.2",
     "connect-session-sequelize": "^7.1.5",
     "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "escape-html": "^1.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "helmet": "^6.0.1",
     "passport": "^0.6.0",
     "passport-github": "^1.1.0",
     "sequelize": "^6.29.0",
@@ -25,6 +29,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "nodemon": "^2.0.21",
     "rollup": "^3.18.0",
     "rollup-plugin-terser": "^7.0.2",
     "sequelize-cli": "^6.6.0"

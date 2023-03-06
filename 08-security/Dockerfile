@@ -1,6 +1,6 @@
 FROM node:16.13.1
 
-WORKDIR /usr/app/07-authentication
+WORKDIR /usr/app/08-security
 COPY . .
 RUN npm config set registry https://registry.npmmirror.com
 RUN npm config set node_sqlite3_binary_host_mirror https://npm.taobao.org/mirrors
