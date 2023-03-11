@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node -r ./scripts/env src/server.js | pnpm bunyan -o short -l info --time local",
-    "start:inspect": "node --inspect-brk -r ./scripts/env src/server.js | pnpm bunyan -o short -l info --time local",
-    "start:profile": "0x -- node -r ./scripts/env src/server.js | pnpm bunyan -o short -l info --time local",
+    "start:inspect": "cross-env CLUSTERING='' node --inspect-brk -r ./scripts/env src/server.js | pnpm bunyan -o short -l info --time local",
+    "start:profile": "cross-env CLUSTERING='' 0x -- node -r ./scripts/env src/server.js | pnpm bunyan -o short -l info --time local",
     "start:prod": "cross-env NODE_ENV=production node -r ./scripts/env src/server.js",
     "sequelize": "sequelize db:migrate",
     "sequelize:prod": "cross-env NODE_ENV=production sequelize db:migrate",

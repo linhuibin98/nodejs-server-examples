@@ -1,6 +1,10 @@
-const express = require('express');
+const os = require('os');
+const cluster = require('cluster');
 const { resolve } = require('path');
 const { promisify } = require('util');
+
+const express = require('express');
+
 const initMiddlewares = require('./middlewares');
 const initControllers = require('./controllers');
 const initSchedules = require('./schedules');
@@ -35,8 +39,8 @@ process.on('unhandledRejection', (err) => {
 // 监听未捕获的同步异常与 Thunk 异常，
 // 输出错误日志
 process.on('uncaughtException', (err) => {
-  logger.fatal(err);
-  process.exit(1);
+    logger.fatal(err);
+    process.exit(1);
 });
 
 function errorHandler(err, req, res, next) {
@@ -52,4 +56,23 @@ function errorHandler(err, req, res, next) {
     res.redirect('/500.html');
 }
 
-bootstrap();
+const useCluster = Boolean(process.env.CLUSTERING);
+
+if (useCluster && cluster.isMaster) {
+    const forkCount = parseInt(process.env.CLUSTERING) || os.cpus().length;
+
+    for (let i = 0, n = forkCount; i < n; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('online', (worker) => {
+        logger.info(`> Worker ${worker.process.pid} is running`);
+    });
+
+    cluster.on('exit', (worker) => {
+        logger.info(`> Worker ${worker.process.pid} exited`);
+        process.exit(worker.process.exitCode);
+    });
+} else {
+    bootstrap();
+}
