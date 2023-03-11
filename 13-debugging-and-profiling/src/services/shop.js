@@ -19,7 +19,7 @@ class ShopService {
 
     }
 
-    async modify({ id, values }) {
+    async modify({ id, values, logging }) {
         const target = await Shop.findByPk(id);
         if (!target) {
             return null;

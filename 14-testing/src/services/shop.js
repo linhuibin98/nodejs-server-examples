@@ -5,7 +5,7 @@ class ShopService {
         //
     }
 
-    async find({ id, pageIndex = 0, pageSize = 10, logging }) {
+    async find({ id, pageIndex = 0, pageSize = 10, where, logging }) {
         if (id) {
             return [await Shop.findByPk(id, { logging })];
         }
@@ -13,6 +13,7 @@ class ShopService {
         return await Shop.findAll({
             offset: pageIndex * pageSize,
             limit: pageSize,
+            where,
             logging,
         });
 
@@ -32,7 +33,7 @@ class ShopService {
         if (!target) {
             return false;
         }
-        return target.destroy({ logging });
+        return Boolean(target.destroy({ logging }));
     }
 
     async create({ values, logging }) {
